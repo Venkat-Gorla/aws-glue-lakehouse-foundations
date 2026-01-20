@@ -1,0 +1,10 @@
+{
+  "Name": "lakehouse-raw-orders-crawler",
+  "Role": "AWSGlueServiceRoleLakehouse",
+  "DatabaseName": "lakehouse_raw",
+  "Targets": {
+    "S3Targets": [
+      {"Path": "s3://aws-glue-lakehouse-vegorla/raw/orders/"}
+    ]
+  }
+}
