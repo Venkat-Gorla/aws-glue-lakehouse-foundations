@@ -5,10 +5,13 @@ sc = SparkContext()
 glue_context = GlueContext(sc)
 spark = glue_context.spark_session
 
-# Read from Glue Catalog (Bronze)
-df = spark.read \
-    .format("glueparquet") \
-    .table("lakehouse_raw.orders")
+# Read from Glue Data Catalog
+dyf = glue_context.create_dynamic_frame.from_catalog(
+    database="lakehouse_raw",
+    table_name="orders"
+)
+
+df = dyf.toDF()
 
 # Write to S3 as Parquet (Silver)
 df.write \

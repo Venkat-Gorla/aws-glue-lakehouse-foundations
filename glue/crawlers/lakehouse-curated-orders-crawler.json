@@ -1,0 +1,21 @@
+{
+  "Name": "lakehouse-curated-orders-crawler",
+  "Role": "AWSGlueServiceRoleLakehouse",
+  "DatabaseName": "lakehouse_curated",
+  "Targets": {
+    "S3Targets": [
+      {
+        "Path": "s3://aws-glue-lakehouse-vegorla/curated/orders/"
+      }
+    ]
+  },
+  "TablePrefix": "",
+  "SchemaChangePolicy": {
+    "UpdateBehavior": "UPDATE_IN_DATABASE",
+    "DeleteBehavior": "DEPRECATE_IN_DATABASE"
+  },
+  "RecrawlPolicy": {
+    "RecrawlBehavior": "CRAWL_EVERYTHING"
+  },
+  "Configuration": "{\"Version\":1.0}"
+}
