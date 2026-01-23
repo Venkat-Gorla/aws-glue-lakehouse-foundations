@@ -10,3 +10,6 @@
 {"order_id":"o-10","user_id":"u-2","amount":"8.99","currency":"USD","created_at":"2026-02-02T14:05:05Z"}
 {"order_id":"o-11","user_id":"u-4","amount":"110.00","currency":"USD","created_at":"2026-02-02T19:45:45Z"}
 {"order_id":"o-12","user_id":"u-5","amount":"3.50","currency":"USD","created_at":"2026-02-03T07:30:00Z"}
+{"order_id":"o-13","user_id":"u-6","amount":null,"currency":"USD","created_at":"2026-01-12T10:00:00Z"}
+{"order_id":"o-14","user_id":"u-7","amount":"0.00","currency":"USD","created_at":"2026-02-01T16:00:00Z"}
+{"order_id":"o-15","user_id":"u-8","amount":"-5.00","currency":"USD","created_at":"2026-02-02T09:00:00Z"}

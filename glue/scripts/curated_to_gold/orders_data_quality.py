@@ -19,7 +19,6 @@ dyf = glue_context.create_dynamic_frame.from_catalog(
 df = dyf.toDF()
 
 # Gold data quality aggregation
-# vegorla: safe division by 0
 df_gold = (
     df
     .groupBy("order_date")
@@ -38,7 +37,8 @@ df_gold = (
     )
     .withColumn(
         "percent_valid",
-        (col("valid_records") / col("total_records")) * 100
+        when(col("total_records") > 0,
+             (col("valid_records") / col("total_records")) * 100).otherwise(0.0)
     )
 )
 
