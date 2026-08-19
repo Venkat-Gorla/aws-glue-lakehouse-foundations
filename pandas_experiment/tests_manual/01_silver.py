@@ -3,11 +3,12 @@ uv run tests_manual/01_silver.py
 """
 
 import pandas as pd
-from lakehouse_pandas.io import load_orders
+from lakehouse_pandas.io import load_orders, write_partitioned_json
 from lakehouse_pandas.silver import transform_to_silver
 
 
 DATA_PATH = "data/orders_raw.json"
+OUTPUT_DIR = "output/silver"
 
 
 def validate_silver(bronze_df: pd.DataFrame, silver_df: pd.DataFrame) -> None:
@@ -79,8 +80,10 @@ def main() -> None:
     )
 
     print(f"\nSilver rows: {len(silver_df)}")
-
     validate_silver(bronze_df, silver_df)
+
+    write_partitioned_json(silver_df, OUTPUT_DIR)
+    print(f"\n✓ Silver output written to {OUTPUT_DIR}")
 
 
 if __name__ == "__main__":
