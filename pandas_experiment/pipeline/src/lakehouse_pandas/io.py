@@ -32,3 +32,13 @@ def write_partitioned_json(
             date_format="iso",
             indent=2,
         )
+
+
+def load_partitioned_json(
+    input_dir: str | Path,
+) -> pd.DataFrame:
+    """Load all JSON files from a partitioned directory."""
+    files = sorted(Path(input_dir).glob("year=*/month=*/day=*/orders.json"))
+    frames = [pd.read_json(file) for file in files]
+
+    return pd.concat(frames, ignore_index=True)
