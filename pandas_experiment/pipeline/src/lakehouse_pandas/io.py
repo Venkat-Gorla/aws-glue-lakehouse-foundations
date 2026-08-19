@@ -42,3 +42,28 @@ def load_partitioned_json(
     frames = [pd.read_json(file) for file in files]
 
     return pd.concat(frames, ignore_index=True)
+
+
+def write_gold_metrics(
+    df: pd.DataFrame,
+    output_dir: str | Path,
+) -> None:
+    """Write Gold metrics partitioned by order_date."""
+    output_path = Path(output_dir)
+
+    for order_date, partition_df in df.groupby(
+        "order_date",
+        sort=True,
+    ):
+        partition_path = (
+            output_path
+            / f"order_date={order_date.strftime('%Y-%m-%d')}"
+        )
+        partition_path.mkdir(parents=True, exist_ok=True)
+
+        partition_df.to_json(
+            partition_path / "orders_metrics.json",
+            orient="records",
+            date_format="iso",
+            indent=2,
+        )

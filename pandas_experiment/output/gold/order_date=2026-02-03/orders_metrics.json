@@ -1,0 +1,10 @@
+[
+  {
+    "order_date":"2026-02-03T00:00:00.000",
+    "total_orders":1,
+    "valid_orders":1,
+    "total_revenue":3.5,
+    "avg_order_value":3.5,
+    "high_value_orders":0
+  }
+]

@@ -3,11 +3,15 @@ uv run tests_manual/03_gold_metrics.py
 """
 
 import pandas as pd
-from lakehouse_pandas.io import load_partitioned_json
+from lakehouse_pandas.io import (
+    load_partitioned_json,
+    write_gold_metrics,
+)
 from lakehouse_pandas.gold import build_orders_metrics_daily
 
 
 SILVER_DIR = "output/silver"
+GOLD_DIR = "output/gold"
 
 
 def validate_feb_2_metrics(gold_df: pd.DataFrame) -> None:
@@ -77,9 +81,12 @@ def main() -> None:
 
     print("\nGold metrics:")
     print(gold_df.to_string(index=False))
-
     print(f"\nGold rows: {len(gold_df)}")
+
     validate_gold_metrics(gold_df)
+
+    write_gold_metrics(gold_df, GOLD_DIR)
+    print(f"\n✓ Gold output written to {GOLD_DIR}")
 
 
 if __name__ == "__main__":
