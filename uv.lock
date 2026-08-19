@@ -14,6 +14,7 @@ resolution-markers = [
 members = [
     "aws-glue-lakehouse-foundations",
     "lakehouse-pandas",
+    "pandas-experiment",
 ]
 
 [[package]]
@@ -130,6 +131,17 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/29/c1/ccb4238212c8c4f496c584f3044d94e0c030ed8e1d68999db46c91c2242f/pandas-3.0.5-cp314-cp314t-win_amd64.whl", hash = "sha256:1c10461f6eeb35d8f05b6184c65c8b9991663b66c46b1d559b682cb34ae7c6ea", size = 10387612, upload-time = "2026-07-22T22:19:24.257Z" },
     { url = "https://files.pythonhosted.org/packages/d2/cf/6a51b2c38980e04c279fd2fa908a1b0982064e860444acfca4ec2e2c8359/pandas-3.0.5-cp314-cp314t-win_arm64.whl", hash = "sha256:3c5015fd1730fbf883647e88068176c839c102cea883ba1769a6f4593bfc1f8c", size = 9509776, upload-time = "2026-07-22T22:19:26.694Z" },
 ]
+
+[[package]]
+name = "pandas-experiment"
+version = "0.1.0"
+source = { virtual = "pandas_experiment" }
+dependencies = [
+    { name = "lakehouse-pandas" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "lakehouse-pandas", editable = "pandas_experiment/pipeline" }]
 
 [[package]]
 name = "python-dateutil"

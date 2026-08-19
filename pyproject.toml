@@ -9,4 +9,5 @@ dependencies = []
 [tool.uv.workspace]
 members = [
     "pandas_experiment/pipeline",
+    "pandas_experiment",
 ]
