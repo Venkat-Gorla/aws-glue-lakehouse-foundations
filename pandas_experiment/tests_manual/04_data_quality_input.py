@@ -15,7 +15,7 @@ def main() -> None:
     print("\nRecords with null or invalid amounts:")
 
     quality_df = silver_df[
-        silver_df["amount"].isna() | (silver_df["amount"] < 0)
+        silver_df["amount"].isna() | (silver_df["amount"] <= 0)
     ][
         ["order_id", "amount", "order_date"]
     ].sort_values("order_date")
