@@ -10,6 +10,32 @@ from lakehouse_pandas.gold import build_orders_metrics_daily
 SILVER_DIR = "output/silver"
 
 
+def validate_feb_2_metrics(gold_df: pd.DataFrame) -> None:
+    feb_2 = gold_df.loc[
+        gold_df["order_date"] == pd.Timestamp("2026-02-02")
+    ].iloc[0]
+
+    assert feb_2["total_orders"] == 3
+    assert feb_2["valid_orders"] == 3
+    assert feb_2["total_revenue"] == 113.99
+    assert feb_2["avg_order_value"] == 113.99 / 3
+    assert feb_2["high_value_orders"] == 1
+    print("✓ 2026-02-02 metrics match expected values")
+
+
+def validate_jan_12_metrics(gold_df: pd.DataFrame) -> None:
+    jan_12 = gold_df.loc[
+        gold_df["order_date"] == pd.Timestamp("2026-01-12")
+    ].iloc[0]
+
+    assert jan_12["total_orders"] == 3
+    assert jan_12["valid_orders"] == 2
+    assert jan_12["total_revenue"] == 52.25
+    assert jan_12["avg_order_value"] == 52.25 / 2
+    assert jan_12["high_value_orders"] == 0
+    print("✓ 2026-01-12 null amount handled correctly")
+
+
 def validate_gold_metrics(gold_df: pd.DataFrame) -> None:
     required_columns = {
         "order_date",
@@ -39,27 +65,8 @@ def validate_gold_metrics(gold_df: pd.DataFrame) -> None:
     ).all()
     print("✓ High-value orders never exceed valid orders")
 
-    feb_2 = gold_df.loc[
-        gold_df["order_date"] == pd.Timestamp("2026-02-02")
-    ].iloc[0]
-
-    assert feb_2["total_orders"] == 3
-    assert feb_2["valid_orders"] == 3
-    assert feb_2["total_revenue"] == 113.99
-    assert feb_2["avg_order_value"] == 113.99 / 3
-    assert feb_2["high_value_orders"] == 1
-    print("✓ 2026-02-02 metrics match expected values")
-
-    jan_12 = gold_df.loc[
-        gold_df["order_date"] == pd.Timestamp("2026-01-12")
-    ].iloc[0]
-
-    assert jan_12["total_orders"] == 3
-    assert jan_12["valid_orders"] == 2
-    assert jan_12["total_revenue"] == 52.25
-    assert jan_12["avg_order_value"] == 52.25 / 2
-    assert jan_12["high_value_orders"] == 0
-    print("✓ 2026-01-12 null amount handled correctly")
+    validate_feb_2_metrics(gold_df)
+    validate_jan_12_metrics(gold_df)
 
 
 def main() -> None:
