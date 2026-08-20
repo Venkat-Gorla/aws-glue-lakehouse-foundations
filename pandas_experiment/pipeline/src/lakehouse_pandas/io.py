@@ -44,11 +44,12 @@ def load_partitioned_json(
     return pd.concat(frames, ignore_index=True)
 
 
-def write_gold_metrics(
+def _write_gold_partitioned_json(
     df: pd.DataFrame,
     output_dir: str | Path,
+    file_name: str,
 ) -> None:
-    """Write Gold metrics partitioned by order_date."""
+    """Write Gold data partitioned by order_date."""
     output_path = Path(output_dir)
 
     for order_date, partition_df in df.groupby(
@@ -62,8 +63,32 @@ def write_gold_metrics(
         partition_path.mkdir(parents=True, exist_ok=True)
 
         partition_df.to_json(
-            partition_path / "orders_metrics.json",
+            partition_path / file_name,
             orient="records",
             date_format="iso",
             indent=2,
         )
+
+
+def write_gold_metrics(
+    df: pd.DataFrame,
+    output_dir: str | Path,
+) -> None:
+    """Write Gold business metrics partitioned by order_date."""
+    _write_gold_partitioned_json(
+        df,
+        output_dir,
+        "orders_metrics.json",
+    )
+
+
+def write_gold_data_quality(
+    df: pd.DataFrame,
+    output_dir: str | Path,
+) -> None:
+    """Write Gold data quality metrics partitioned by order_date."""
+    _write_gold_partitioned_json(
+        df,
+        output_dir,
+        "orders_data_quality.json",
+    )

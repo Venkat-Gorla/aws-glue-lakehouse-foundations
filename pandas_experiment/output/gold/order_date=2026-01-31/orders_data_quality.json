@@ -1,0 +1,10 @@
+[
+  {
+    "order_date":"2026-01-31T00:00:00.000",
+    "total_records":1,
+    "null_amount_count":0,
+    "invalid_amount_count":0,
+    "valid_records":1,
+    "percent_valid":100.0
+  }
+]
