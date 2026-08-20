@@ -20,6 +20,7 @@ The project is intentionally built without AWS Console-driven configuration to e
 - Deterministic Spark jobs with reproducible outputs
 - Manual Gold table DDL (no crawlers) to enforce **analytics contracts**
 - Business metrics and data quality signals at the Gold layer
+- Local Pandas experiment to reproduce and visualize the core Spark data flow
 
 ## 🧰 Tech Stack
 
