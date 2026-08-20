@@ -1,0 +1,21 @@
+> uv run tests_manual/01_silver.py
+
+Loaded Bronze orders: 15 rows
+
+Silver sample:
+order_id  amount             created_at_ts order_date  year  month  day
+     o-1   19.99 2026-01-10 12:01:22+00:00 2026-01-10  2026      1   10
+     o-2    5.00 2026-01-10 15:45:10+00:00 2026-01-10  2026      1   10
+     o-3   12.50 2026-01-11 09:15:10+00:00 2026-01-11  2026      1   11
+     o-4   99.99 2026-01-11 18:30:00+00:00 2026-01-11  2026      1   11
+     o-5    7.25 2026-01-12 08:00:00+00:00 2026-01-12  2026      1   12
+
+Silver rows: 15
+✓ Row count preserved
+✓ Required Silver columns present
+✓ All timestamps parsed
+✓ order_date derived correctly
+✓ year/month/day derived correctly
+✓ Amount converted to numeric and source null preserved
+
+✓ Silver output written to output/silver

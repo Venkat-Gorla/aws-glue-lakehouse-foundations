@@ -1,0 +1,24 @@
+> uv run tests_manual/03_gold_metrics.py
+
+Loaded Silver orders: 15 rows
+
+Gold metrics:
+order_date  total_orders  valid_orders  total_revenue  avg_order_value  high_value_orders
+2026-01-10             2             2          24.99        12.495000                  0
+2026-01-11             2             2         112.49        56.245000                  0
+2026-01-12             3             2          52.25        26.125000                  0
+2026-01-31             1             1          15.75        15.750000                  0
+2026-02-01             3             3          80.00        26.666667                  0
+2026-02-02             3             3         113.99        37.996667                  1
+2026-02-03             1             1           3.50         3.500000                  0
+
+Gold rows: 7
+✓ Required Gold columns present
+✓ One row per order_date
+✓ order_date is unique
+✓ Valid orders never exceed total orders
+✓ High-value orders never exceed valid orders
+✓ 2026-02-02 metrics match expected values
+✓ 2026-01-12 null amount handled correctly
+
+✓ Gold output written to output/gold

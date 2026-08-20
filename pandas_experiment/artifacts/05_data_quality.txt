@@ -1,0 +1,23 @@
+> uv run tests_manual/05_data_quality.py
+
+Loaded Silver orders: 15 rows
+
+Data quality metrics:
+order_date  total_records  null_amount_count  invalid_amount_count  valid_records  percent_valid
+2026-01-10              2                  0                     0              2     100.000000
+2026-01-11              2                  0                     0              2     100.000000
+2026-01-12              3                  1                     0              2      66.666667
+2026-01-31              1                  0                     0              1     100.000000
+2026-02-01              3                  0                     1              2      66.666667
+2026-02-02              3                  0                     1              2      66.666667
+2026-02-03              1                  0                     0              1     100.000000
+
+Gold rows: 7
+✓ Required UC-2 columns present
+✓ One row per order_date
+✓ order_date is unique
+✓ Valid records never exceed total records
+✓ Percent valid is between 0 and 100
+✓ 2026-01-12 NULL amount handled correctly
+✓ 2026-02-01 zero amount handled correctly
+✓ 2026-02-02 negative amount handled correctly
